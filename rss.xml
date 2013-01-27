@@ -1,70 +1,122 @@
 <?xml version="1.0"?>
 <rss version="2.0">
   <channel>
-    <title>MiracleSu记忆</title>
+    <title>MiracleSu的碎片</title>
     <link>http://miraclesu.github.com</link>
-    <pubDate>2013-01-26 07:47:06 +0800</pubDate>
+    <pubDate>2013-01-27 03:43:40 +0800</pubDate>
     <item>
-      <title>你的第一篇博客</title>
-      <link>http://miraclesu.github.com/2012/new-born.html</link>
-      <pubDate>2012-12-22 12:00:00 +0800</pubDate>
-      <description>&lt;h1&gt;感谢你使用Gor编写博客&lt;/h1&gt;
+      <title>linux下给php安装amqp扩展</title>
+      <link>http://miraclesu.github.com/2013/01/linux-php-amqp.html</link>
+      <pubDate>2013-01-26 12:00:00 +0800</pubDate>
+      <description>&lt;h2&gt;安装librabbitmq-c和rabbitmq-codegen&lt;/h2&gt;
 
-&lt;h2&gt;本文位于 posts/first-blog.md , 你可以任何删掉,修改这个文件&lt;/h2&gt;
+&lt;pre&gt;&lt;code&gt;# 下载0-9-1版的rabbitmq-c
+git clone git://github.com/alanxz/rabbitmq-c.git
+cd rabbitmq-c
+# Enable and update the codegen git submodule
+git submodule init
+git submodule update
+# Configure, compile and install
+autoreconf -i &amp;amp;&amp;amp; ./configure &amp;amp;&amp;amp; make &amp;amp;&amp;amp; sudo make install
+&lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;文件开头是当前文章的元数据&lt;/p&gt;
+&lt;h2&gt;安装pecl扩展&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code&gt;#下载最新的amqp扩展
+wget http://pecl.php.net/get/amqp-1.0.9.tgz
+tar xvzf amqp-1.0.9.tgz
+cd amqp-1.0.9 &amp;amp;&amp;amp; phpize
+./configure --with-amqp &amp;amp;&amp;amp; make &amp;amp;&amp;amp; sudo make install
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2&gt;安装过程中可能会遇到的问题&lt;/h2&gt;
 
 &lt;ol&gt;
-&lt;li&gt;date为自动生成, 当然,你可以修改,这是你的自由&lt;/li&gt;
-&lt;li&gt;permalink 可以是固定地址,也可以由gor为你自动生成&lt;/li&gt;
-&lt;li&gt;categories 就是分类, 可以多个&lt;/li&gt;
-&lt;li&gt;tags 同理,多个标签也是很常见的&lt;/li&gt;
+&lt;li&gt;缺少libtool包&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;p&gt;请确保文件使用UTF8 without BOM编码&lt;/p&gt;
-
-&lt;h2&gt;你可以通过执行下面的语句来新建一篇博客:&lt;/h2&gt;
-
-&lt;pre&gt;&lt;code&gt;gor post 文章标题
+&lt;pre&gt;&lt;code&gt;configure.ac: installing ./install-sh
+configure.ac: installing ./missing
+configure.ac:34: installing ./config.guess
+configure.ac:34: installing ./config.sub
+Makefile.am:3: Libtool library used but LIBTOOL is undefined
+Makefile.am:3:
+Makefile.am:3: The usual way to define LIBTOOL is to add AC_PROG_LIBTOOL
+Makefile.am:3: to configure.ac and run aclocal and autoconf again.
+Makefile.am: C objects in subdir but AM_PROG_CC_C_O not in configure.ac
+Makefile.am: installing ./compile
+Makefile.am: installing ./depcomp
+autoreconf: automake failed with exit status: 1
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h2&gt;编译你的博客,并预览之&lt;/h2&gt;
+&lt;p&gt;解决办法，安装libtool，ubuntu：&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;gor compile #编译
-gor http
+&lt;pre&gt;&lt;code&gt;sudo apt-get install libtool
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;然后打开你的浏览器,访问 &lt;a href=&#34;http://127.0.0.1:8080&#34;&gt;http://127.0.0.1:8080&lt;/a&gt; 来预览&lt;/p&gt;
-
-&lt;h2&gt;你将使用Markdown来编写博客&lt;/h2&gt;
-
-&lt;p&gt;&lt;a href=&#34;http://wowubuntu.com/markdown/&#34;&gt;Markdown 语法中文版&lt;/a&gt; 能让你快速入门其语法&lt;/p&gt;
-
-&lt;p&gt;相信&lt;a href=&#34;http://markdownpad.com&#34;&gt;MarkdownPad&lt;/a&gt;或&lt;a href=&#34;http://code.google.com/p/liteide/&#34;&gt;liteide&lt;/a&gt;会是你的编写博客的好帮手&lt;/p&gt;
-
-&lt;h2&gt;如果你打算部署到github的pages上&lt;/h2&gt;
+&lt;p&gt;其他系统类似&lt;/p&gt;
 
 &lt;ol&gt;
-&lt;li&gt;申请github帐户&lt;/li&gt;
-&lt;li&gt;新建一个库 username.github.com 即你的用户名命名的地址&lt;/li&gt;
-&lt;li&gt;将compiled目录,作为根路径,提交上去github.com上&lt;/li&gt;
-&lt;li&gt;稍等几分钟, 你即可通过 &lt;a href=&#34;http://username.github.com&#34;&gt;http://username.github.com&lt;/a&gt; 访问到&lt;/li&gt;
+&lt;li&gt;如果还有其他问题，欢迎给我留言，我补上&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;h2&gt;附上git教程 &lt;a href=&#34;http://gitbook.liuhui998.com/&#34;&gt;GitBook中文版&lt;/a&gt;&lt;/h2&gt;
+&lt;h2&gt;使用&lt;/h2&gt;
 
-&lt;p&gt;一般来说,你只需要几个简单的git命令就足以应付大部分需求(仅示例)&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;?php
+//配置信息
+$conn_args = array(
+    &#39;host&#39; =&amp;gt; &#39;127.0.0.1&#39;,
+    &#39;port&#39; =&amp;gt; &#39;5672&#39;,
+    &#39;login&#39; =&amp;gt; &#39;guest&#39;,
+    &#39;password&#39; =&amp;gt; &#39;guest&#39;,
+    &#39;vhost&#39;=&amp;gt;&#39;/&#39;
+);
+//创建连接
+$conn = new AMQPConnection($conn_args);
+if (!$conn-&amp;gt;connect()) {
+    die(&#39;Not connected :(&#39; . PHP_EOL);
+}
+// Open Channel
+$channel = new AMQPChannel($conn);
 
-&lt;pre&gt;&lt;code&gt;git clone git://github.com/wendal/wendal.net.git
-git add -A
-git commit -m &amp;quot;...&amp;quot;
-git pull
-git push
+// Declare exchange
+$exchange = new AMQPExchange($channel);
+$exchange-&amp;gt;setName(&#39;extest&#39;);
+$exchange-&amp;gt;setType(&#39;fanout&#39;);
+$exchange-&amp;gt;declare();
+
+// Create Queue
+$queue = new AMQPQueue($channel);
+$queue-&amp;gt;setName(&#39;qutest&#39;);
+$queue-&amp;gt;declare();
+
+// Bind it on the exchange to routing.key
+$exchange-&amp;gt;bind(&#39;qutest&#39;, &#39;routing.key&#39;);
+
+$data = array(
+    &#39;Name&#39; =&amp;gt; &#39;foobar&#39;,
+    &#39;Args&#39;  =&amp;gt; array(&amp;quot;0&amp;quot;, &amp;quot;1&amp;quot;, &amp;quot;2&amp;quot;, &amp;quot;3&amp;quot;),
+);
+
+//生产者，向RabbitMQ发送消息
+$message = $exchange-&amp;gt;publish(json_encode($data), &#39;key&#39;);
+if (!$message) {
+    echo &#39;Message not sent&#39;, PHP_EOL;
+} else {
+    echo &#39;Message sent!&#39;, PHP_EOL;
+}
+
+//消费者
+while ($envelope = $queue-&amp;gt;get(AMQP_AUTOACK)) {
+    echo ($envelope-&amp;gt;isRedelivery()) ? &#39;Redelivery&#39; : &#39;New Message&#39;;
+    echo PHP_EOL;
+    echo $envelope-&amp;gt;getBody(), PHP_EOL;
+}
+?&amp;gt;
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h2&gt;用gor编写博客将会是一件很开心的事,如果有任何意见或建议,欢迎到 &lt;a href=&#34;http://github.com/wendal/gor&#34;&gt;gor的官网&lt;/a&gt; 提交issue&lt;/h2&gt;
-
-&lt;h1&gt;祝你使用愉快&lt;/h1&gt;
+&lt;p&gt;更多请参考：&lt;br /&gt;
+&lt;a href=&#34;http://php.net/manual/en/amqp.examples.php&#34;&gt;PHP官网&lt;/a&gt;&lt;/p&gt;
 </description>
     </item>
   </channel>
