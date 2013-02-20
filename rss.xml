@@ -3,7 +3,7 @@
   <channel>
     <title>MiracleSu的碎片</title>
     <link>http://miraclesu.github.com</link>
-    <pubDate>2013-01-27 03:43:40 +0800</pubDate>
+    <pubDate>2013-02-20 11:47:08 +0800</pubDate>
     <item>
       <title>linux下给php安装amqp扩展</title>
       <link>http://miraclesu.github.com/2013/01/linux-php-amqp.html</link>
@@ -27,6 +27,11 @@ wget http://pecl.php.net/get/amqp-1.0.9.tgz
 tar xvzf amqp-1.0.9.tgz
 cd amqp-1.0.9 &amp;amp;&amp;amp; phpize
 ./configure --with-amqp &amp;amp;&amp;amp; make &amp;amp;&amp;amp; sudo make install
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;记得在php.ini中加入amqp扩展：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;extension=amqp.so
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;h2&gt;安装过程中可能会遇到的问题&lt;/h2&gt;
